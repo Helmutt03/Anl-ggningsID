@@ -34,13 +34,13 @@
 
 
 
-        if (stringValue != '7') {
+        if (stringValue !== '7') {
           for (let i = 0; i < stringLength; i++) {
-            if(stringValue[j] === '1') {
+            if(stringValue[j] === '1' && (stringValue[j+11] >= '0' && stringValue[j+11] <= '9')) {
               stringValue = '735999' + stringValue
               stringLength += 6
             }
-            if (stringValue[j] === '7') {
+            if (stringValue[j] === '7' && (stringValue[j+17] >= '0' && stringValue[j+17] <= '9')) {
               i += 17
               j += 18
             } else {
@@ -83,8 +83,12 @@
 
 
         var outputjs = document.getElementById("output")
-        outputjs.innerText = stringValue
-        navigator.clipboard.writeText(stringValue)
+        if (stringValue === '') {
+          outputjs.innerText = 'Inget anläggningsID hittat.'
+        } else {
+          outputjs.innerText = stringValue
+          navigator.clipboard.writeText(stringValue)
+        }
       }
     </script>
 </body>
