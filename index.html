@@ -33,16 +33,28 @@ if (stringValue.includes("Områdes-ID:")) {
                              stringValue = stringValue.slice(0, 18)
                              stringValue = omID + stringValue
 }
+ 
+ 
 stringValue = stringValue.replace(/Områdes-ID:/g, '')
+var sliced = ""
+var y = 18
+var z = 0
+var temp = ""
  
 if (stringValue[0] === "7") {
-  var numberOfPods = stringValue.length / 19
-  stringValue = "*" + stringValue
-                             if (stringValue.length >= 19) {
-                                                          for (var x = 0, y = 19; x <= numberOfPods; x++, y + 18) {
-                                                                                       stringValue[y] = "\n"
+  var numberOfPods = stringValue.length / 18
+ 
+                             if (stringValue.length > 18) {
+                                                          for (var x = 0; x < numberOfPods; x++, y += 18, z += 18) {
+                                                                                       sliced = stringValue.slice(z, y)
+                                                                                       temp += '*' + sliced + '\n'
+                                                                                      
                                                           }
-                             }
+                                                                                       stringValue = temp
+                             } else {
+                             stringValue = '*' + stringValue
+}
+                            
 }
  
  
