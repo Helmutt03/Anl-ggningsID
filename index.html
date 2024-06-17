@@ -5,64 +5,87 @@
   <title>AnläggningsID Från Faktura</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
-                            
+
 </head>
 <body>
- 
- 
-  <h1>Hej Hej</h1>
-<h3>Använd denna när du kopierar ett anläggningsID från en faktura<h3>
-<h3></h3>
-<input type="text" id="string">
-<button type="button" onclick="clickHandler()">Kopiera</button>
- 
-<h1 id="output">
- 
- 
-<script>
-  function clickHandler() {
-var stringToChange = document.getElementById("string")
-var stringValue = stringToChange.value
-stringToChange = ''
- 
-stringValue = stringValue.replace(/\s+/g, '')
-stringValue = stringValue.replace(/Anläggnings-ID:/g, '')
-if (stringValue.includes("Områdes-ID:")) {
-                             stringValue = stringValue.replace(/Områdes-ID:/g, '')
-                             omID = stringValue.slice(18, 21)
-                             stringValue = stringValue.slice(0, 18)
-                             stringValue = omID + stringValue
-}
- 
- 
-stringValue = stringValue.replace(/Områdes-ID:/g, '')
-var sliced = ""
-var y = 18
-var z = 0
-var temp = ""
- 
-if (stringValue[0] === "7") {
-  var numberOfPods = stringValue.length / 18
- 
-                             if (stringValue.length > 18) {
-                                                          for (var x = 0; x < numberOfPods; x++, y += 18, z += 18) {
-                                                                                       sliced = stringValue.slice(z, y)
-                                                                                       temp += '*' + sliced + '\n'
-                                                                                      
-                                                          }
-                                                                                       stringValue = temp
-                             } else {
-                             stringValue = '*' + stringValue
-}
-                            
-}
- 
- 
- 
-var outputjs = document.getElementById("output")
-outputjs.innerText = stringValue
-navigator.clipboard.writeText(stringValue)
-  }
-</script>
+
+
+<h1>Verktygslåda<h1>
+<h3>Formatera anläggningsID<h3>
+  <div></div>
+  <input type="text" id="string">
+  <button type="button" onclick="clickHandler()">Kopiera</button>
+
+  <h1 id="output">
+
+
+    <script>
+      function clickHandler() {
+        var stringToChange = document.getElementById("string")
+        var stringValue = stringToChange.value
+        //stringToChange = ''
+        var sliced = ""
+        var y = 18
+        var z = 0
+        let j = 0
+        var temp = ""
+        stringValue = stringValue.replace(/\s+/g, '')
+        let stringLength = stringValue.length
+
+
+
+        if (stringValue != '7') {
+          for (let i = 0; i < stringLength; i++) {
+            if(stringValue[j] === '1') {
+              stringValue = '735999' + stringValue
+              stringLength += 6
+            }
+            if (stringValue[j] === '7') {
+              i += 17
+              j += 18
+            } else {
+              stringValue = stringValue.replace(stringValue[j], '')
+            }
+          }
+        }
+
+
+
+
+        stringValue = stringValue.replace(/Anläggnings-ID:/g, '')
+        if (stringValue.includes("Områdes-ID:")) {
+          stringValue = stringValue.replace(/Områdes-ID:/g, '')
+          omID = stringValue.slice(18, 21)
+          stringValue = stringValue.slice(0, 18)
+          stringValue = omID + stringValue
+        }
+
+
+        stringValue = stringValue.replace(/Områdes-ID:/g, '')
+
+
+        if (stringValue[0] === "7") {
+          var numberOfPods = stringValue.length / 18
+
+          if (stringValue.length > 18) {
+            for (var x = 0; x < numberOfPods; x++, y += 18, z += 18) {
+              sliced = stringValue.slice(z, y)
+              temp += '*' + sliced + '\n'
+
+            }
+            stringValue = temp
+          } else {
+            stringValue = '*' + stringValue
+          }
+
+        }
+
+
+
+        var outputjs = document.getElementById("output")
+        outputjs.innerText = stringValue
+        navigator.clipboard.writeText(stringValue)
+      }
+    </script>
 </body>
 </html>
