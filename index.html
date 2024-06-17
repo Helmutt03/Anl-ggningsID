@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AnläggningsID Från Faktura</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+                            
+</head>
+<body>
+ 
+ 
+  <h1>Hej Hej</h1>
+<h3>Använd denna när du kopierar ett anläggningsID från en faktura<h3>
+<h3></h3>
+<input type="text" id="string">
+<button type="button" onclick="clickHandler()">Kopiera</button>
+ 
+<h1 id="output">
+ 
+ 
+<script>
+  function clickHandler() {
+var stringToChange = document.getElementById("string")
+var stringValue = stringToChange.value
+stringToChange = ''
+ 
+stringValue = stringValue.replace(/\s+/g, '')
+stringValue = stringValue.replace(/Anläggnings-ID:/g, '')
+if (stringValue.includes("Områdes-ID:")) {
+                             stringValue = stringValue.replace(/Områdes-ID:/g, '')
+                             omID = stringValue.slice(18, 21)
+                             stringValue = stringValue.slice(0, 18)
+                             stringValue = omID + stringValue
+}
+stringValue = stringValue.replace(/Områdes-ID:/g, '')
+ 
+if (stringValue[0] === "7") {
+  var numberOfPods = stringValue.length / 19
+  stringValue = "*" + stringValue
+                             if (stringValue.length >= 19) {
+                                                          for (var x = 0, y = 19; x <= numberOfPods; x++, y + 18) {
+                                                                                       stringValue[y] = "\n"
+                                                          }
+                             }
+}
+ 
+ 
+ 
+var outputjs = document.getElementById("output")
+outputjs.innerText = stringValue
+navigator.clipboard.writeText(stringValue)
+  }
+</script>
+</body>
+</html>
