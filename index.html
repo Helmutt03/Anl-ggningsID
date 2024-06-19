@@ -355,7 +355,7 @@
                 z += 18
                 i += 17
                 j += 18
-              } else if (omradesIdn.includes(stringValue[j] + stringValue[j+1] + stringValue[j+2])) {
+              } else if (omradesIdn.includes(stringValue[j] + stringValue[j+1] + stringValue[j+2]) && stringValue[j+3] === '7' && stringValue[j+4] === '3' && stringValue[j+5] === '5' && stringValue[j+6] === '9') {
                 y += 21
                 sliced = stringValue.slice(z, y)
                 temp += sliced + '\n'
