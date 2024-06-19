@@ -30,6 +30,7 @@
           let omID
           var temp = ""
           stringValue = stringValue.replace(/\s+/g, '')
+          stringValue = 'd' + stringValue
           let stringLength = stringValue.length
           harOmID = stringValue[0] + stringValue[1] + stringValue[2]
           omradesIdn = "ABB\n" +
@@ -373,21 +374,21 @@
 
 
           // Borde egentligen ta bort eller ändra
-          if (stringValue[0] === "7") {
-            var numberOfPods = stringValue.length / 18
-            y = 18
-            if (stringValue.length > 18) {
-              for (var x = 0; x < numberOfPods; x++, y += 18, z += 18) {
-                sliced = stringValue.slice(z, y)
-                temp += '*' + sliced + '\n'
+          //if (stringValue[0] === "7") {
+            //var numberOfPods = stringValue.length / 18
+            //y = 18
+            //if (stringValue.length > 18) {
+              //for (var x = 0; x < numberOfPods; x++, y += 18, z += 18) {
+                //sliced = stringValue.slice(z, y)
+                //temp += '*' + sliced + '\n'
 
-              }
-              stringValue = temp
-            } else {
-              stringValue = '*' + stringValue
-            }
+          //    }
+              //stringValue = temp
+         //   } else {
+              //stringValue = '*' + stringValue
+        //    }
 
-          }
+         // }
 
 
           var outputjs = document.getElementById("output")
